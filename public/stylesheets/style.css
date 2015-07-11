@@ -10,6 +10,10 @@ section > div 					{ padding: 20px; }
 
 header, nav, section, footer 	{ background: #eee; text-align: center; }
 
-nav span 					 	{ margin: 0px 10px 0px 0px; }
+nav span, footer span		 	{ margin: 0px 10px 0px 0px; }
 
-a 								{ color: #00B7FF; }
+a 								{ color: #00B7FF; text-decoration: none; }
+
+a:hover							{ color:orangered; text-decoration: underline; }
+	
+
