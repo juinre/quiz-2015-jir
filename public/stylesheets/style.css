@@ -17,3 +17,21 @@ a 								{ color: #00B7FF; text-decoration: none; }
 a:hover							{ color:orangered; text-decoration: underline; }
 	
 
+#foto {
+	margin: 0px 0px 15px 15px;
+	padding: 10px;
+	background-color: grey;
+	border-radius: 5px;
+	box-shadow: 0 0 5px steelblue;
+	float: right;
+}
+
+.creditos { text-align: justify; }
+
+.subtitulo { color: coral; 
+	padding-top: 1em;
+	padding-bottom: 1em;
+	text-align: justify; 
+}
+
+.video {display: block;}	  
