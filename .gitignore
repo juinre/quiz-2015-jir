@@ -45,3 +45,4 @@ Temporary Items
 # Excluimos los siguientes archivos y carpetas
 node_modules
 npm-debug.log
+quiz.sqlite
