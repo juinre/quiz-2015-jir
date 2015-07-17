@@ -13,6 +13,9 @@ router.get('/author', function(req, res) {
   res.render('author');
 });
 
+/* Cuando la URL contiene el parámetro quizId -> lanzamos el controlador que recupera el registro de la BD */
+router.param('quizId', quizController.load);
+
 router.get('/quizes', 						quizController.index);
 router.get('/quizes/:quizId(\\d+)', 		quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', 	quizController.answer);
