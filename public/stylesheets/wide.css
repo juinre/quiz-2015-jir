@@ -13,8 +13,51 @@ section {
 	float: right; 
 	width: 80%; 
 	height: 400px;
+}
+
+.contenido {
 	display: flex;
 	flex-direction:column;
 	justify-content:flex-start;
 	align-items:center; 
+	text-align: center;
 }
+
+
+table {
+	margin: 1em 0 0 0;
+	border-spacing: 0px;
+
+	font-family: "Open Sans", sans-serif;
+
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: darkgray;
+
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: darkgray;
+
+}
+
+th, td {
+	padding: 0.5em;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: darkgray;
+
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: darkgray;
+}
+
+th {
+	background-color: #E2E2E2;
+	color: #424242;;
+	font-size: 1em;
+}
+td {
+	background-color: white;
+	font-size: 0.8em;
+}
+

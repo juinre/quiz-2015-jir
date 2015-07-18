@@ -1,4 +1,10 @@
+<form class="buscador" method="get" action="/quizes">
+	<p>Buscar preguntas con el siguiente contenido:</p>
+	<input type="text" name="search"/>
+	<input type="submit" value="Buscar"/>
+</form>
 <table>
+	<th>Lista de Preguntas</th>
 	<% for (var i = 0; i <quizes.length; i++) { %>
 		<tr>
 			<td>
@@ -7,5 +13,4 @@
 		</tr>
 	<% } %>
 </table>
-
-		
+	
