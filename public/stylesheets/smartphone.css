@@ -2,10 +2,14 @@ body 							{ background: #333; font-size: xx-large; }
 
 #page-wrap:after				{ content: "Smartphone Layout"; }
 
-h2 span, section h3, label.rem, th	
+h2 span, section h3, .rem, th	
 								{ display: none; }
 footer, input					{ font-size: large; }
 
 footer span 					{ display: block; }
 
 .video							{ display: none; }
+
+#nuevaPregunta label {
+	display: none;
+}

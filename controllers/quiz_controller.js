@@ -32,14 +32,14 @@ exports.index = function(req, res) {
 	// Ejecutamos la consulta y mostramos el resultado
 	models.Quiz.findAll(consulta).then(
 		function(quizes) {
-			res.render('quizes/index.ejs', {quizes: quizes});
+			res.render('quizes/index.ejs', {quizes: quizes, errors: []});
 		}
 	).catch(function(error) { next(error); });
 };
 
 // GET /quizes/:quizId
 exports.show = function(req, res) {
-	res.render('quizes/show', {quiz: req.quiz});
+	res.render('quizes/show', {quiz: req.quiz, errors: []});
 };
 
 // GET /quizes/:quizId/answer
@@ -48,7 +48,7 @@ exports.answer = function(req, res) {
 	if (req.query.respuesta.toUpperCase() === req.quiz.respuesta) {
 	   	resultado = 'Correcto';
 	}
-	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
+	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, errors: []});
 };
 
 // GET /quizes/new
@@ -57,7 +57,7 @@ exports.new = function(req, res) {
 					{pregunta: "Pregunta",
 				 	 respuesta: "Respuesta"}
 				);
-	res.render('quizes/new', {quiz: quiz});	
+	res.render('quizes/new', {quiz: quiz, errors: []});	
 };
 
 // POST /quizes/create
@@ -65,12 +65,28 @@ exports.create = function(req, res) {
 	// Construimos el objeto a partir de los parámetros
 	var quiz = 	models.Quiz.build(req.body.quiz);
 
-	// Convertimos la respuesta a mayúsculas
-	quiz.respuesta = quiz.respuesta.toUpperCase();
+	quiz.validate().then (
 
-	// Guardamos los valores en la BD (sólo los valores de pregunta, respuesta)
-	quiz.save({fields:["pregunta", "respuesta"]}).then(function() {
-		// Redirección HTTP (URL relativa)
-		res.redirect('/quizes');	
-	})
+		function (err) {
+
+			if (err) {
+
+				res.render('quizes/new', {quiz: quiz, errors: err.errors});	
+
+			} else {
+
+				// Convertimos la respuesta a mayúsculas
+				quiz.respuesta = quiz.respuesta.toUpperCase();
+
+				// Guardamos los valores en la BD (sólo los valores de pregunta, respuesta)
+				quiz.save({fields:["pregunta", "respuesta"]}).then(
+					function() {
+						// Redirección HTTP (URL relativa)
+						res.redirect('/quizes');	
+					}
+				)
+			}
+		}
+
+	)
 };

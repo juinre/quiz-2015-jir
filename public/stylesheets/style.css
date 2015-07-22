@@ -35,3 +35,18 @@ a:hover							{ color:orangered; text-decoration: underline; }
 }
 
 .video {display: block;}	  
+
+#nuevaPregunta label {
+	display: inline-block;
+	text-align: right;
+	width: 80px;
+}
+
+nav span {
+	margin: 0px 10px 0px 0px;
+}
+
+#ErrorMsgs {
+	color: #f61;
+	font-style: smaler;
+}

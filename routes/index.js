@@ -5,12 +5,12 @@ var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Quiz' });
+  res.render('index', { title: 'Quiz', errors: [] });
 });
 
 /* Página de créditos del autor */
 router.get('/author', function(req, res) {
-  res.render('author');
+  res.render('author', {errors: []});
 });
 
 /* Cuando la URL contiene el parámetro quizId -> lanzamos el controlador que recupera el registro de la BD */
