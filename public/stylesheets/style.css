@@ -36,7 +36,7 @@ a:hover							{ color:orangered; text-decoration: underline; }
 
 .video {display: block;}	  
 
-#nuevaPregunta label {
+#nuevaPregunta label, #editaPregunta label {
 	display: inline-block;
 	text-align: right;
 	width: 80px;
