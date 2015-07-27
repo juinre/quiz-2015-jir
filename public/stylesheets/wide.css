@@ -13,6 +13,8 @@ section {
 	float: right; 
 	width: 80%; 
 	height: 400px;
+	overflow-y: auto;
+
 }
 
 .contenido {

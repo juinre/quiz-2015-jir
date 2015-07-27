@@ -21,12 +21,13 @@ exports.index = function(req, res) {
 	var busqueda;
 
 	// Contruimos la consulta de búsqueda
-	consulta = {};
 	if (req.query.search !== undefined) {
 		// Convertimos a mayúsculas y sustituimos los espacios por %
 		busqueda = req.query.search.toUpperCase().replace(/\s/g,"%");
 		consulta = {where: ["Upper(pregunta) like ?", '%' + busqueda  + '%'], 
-				    order: [['pregunta', 'ASC']]};
+				    order: [['tema', 'ASC'], ['pregunta', 'ASC']]};
+	} else {
+		consulta = {order: [['tema', 'ASC'], ['pregunta', 'ASC']]};
 	};
 
 	// Ejecutamos la consulta y mostramos el resultado
@@ -78,8 +79,8 @@ exports.create = function(req, res) {
 				// Convertimos la respuesta a mayúsculas
 				quiz.respuesta = quiz.respuesta.toUpperCase();
 
-				// Guardamos los valores en la BD (sólo los valores de pregunta, respuesta)
-				quiz.save({fields:["pregunta", "respuesta"]}).then(
+				// Guardamos los valores en la BD (sólo los valores de pregunta, respuesta y tema)
+				quiz.save({fields:["pregunta", "respuesta", "tema"]}).then(
 					function() {
 						// Redirección HTTP (URL relativa)
 						res.redirect('/quizes');	
@@ -105,6 +106,7 @@ exports.update = function(req, res) {
 	
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.tema = req.body.quiz.tema;
 
 	req.quiz.validate().then (
 
@@ -119,8 +121,8 @@ exports.update = function(req, res) {
 				// Convertimos la respuesta a mayúsculas
 				req.quiz.respuesta = req.quiz.respuesta.toUpperCase();
 
-				// Guardamos los valores en la BD (sólo los valores de pregunta, respuesta)
-				req.quiz.save({fields:["pregunta", "respuesta"]}).then(
+				// Guardamos los valores en la BD (sólo los valores de pregunta, respuesta y tema)
+				req.quiz.save({fields:["pregunta", "respuesta", "tema"]}).then(
 					function() {
 						// Redirección HTTP (URL relativa)
 						res.redirect('/quizes');	
