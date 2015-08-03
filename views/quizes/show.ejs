@@ -7,7 +7,20 @@
 <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo Comentario</button></a></p>
 <p><strong>Comentarios:</strong></p>
 <ul>
-<% for (var i in quiz.Comments) { %>
-	<li><%= quiz.Comments[i].texto %></li>
-<% } %>
+<% 	
+	for (var i in quiz.Comments) { 
+		if (quiz.Comments[i].publicado || session.user) { %>
+			<li><%= quiz.Comments[i].texto %>
+		<% } 
+
+		if (!quiz.Comments[i].publicado && session.user) { %>
+			<form method="post" id="publicarComentario" action="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[i].id %>/publish?_method=put">
+				<input type="submit" value="Publicar">
+			</form>	<%
+	  	} 
+	  	if (quiz.Comments[i].publicado || session.user) { %>
+	  		</li>
+	  	<% } 
+   	} 
+%>
 </ul>

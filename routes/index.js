@@ -17,6 +17,8 @@ router.get('/author', function(req, res) {
 
 /* Cuando la URL contiene el parámetro quizId -> lanzamos el controlador que recupera el registro de la BD */
 router.param('quizId', quizController.load);
+/* Cuando la URL contiene el parámetro commentId -> lanzamos el controlador que recupera el registro de la BD */
+router.param('commentId', commentController.load);
 
 // Definición de rutas de sesion
 router.get('/login',		sessionController.new);
@@ -39,6 +41,7 @@ router.delete('/quizes/:quizId(\\d+)', 		sessionController.loginRequired,	quizCo
 // Definición de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new',	commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',		commentController.create);
+router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',	sessionController.loginRequired,	commentController.publish);
 
 
 
