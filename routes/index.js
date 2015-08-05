@@ -4,6 +4,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
+var statisticController = require('../controllers/statistic_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -43,6 +44,9 @@ router.get('/quizes/:quizId(\\d+)/comments/new',	commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',		commentController.create);
 router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',	sessionController.loginRequired,	commentController.publish);
 
+
+// Definición de estadísticas
+router.get('/statistics', 	statisticController.load, statisticController.index);
 
 
 module.exports = router;

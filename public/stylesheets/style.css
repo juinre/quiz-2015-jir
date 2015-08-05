@@ -71,3 +71,11 @@ header form, #publicarComentario { display: inline; }
 	color:orangered; 
 	text-decoration: underline; 
 }
+
+.stTexto{
+	text-align: left;
+}
+
+.stValor{
+	text-align: right;
+}
