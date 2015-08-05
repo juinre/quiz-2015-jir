@@ -35,6 +35,8 @@ exports.create = function(req, res) {
 
 		// Guardamos los datos del usuario
 		req.session.user = {id: user.id, username: user.username};
+		// Guardamos el momento actual
+		req.session.lastTime = process.hrtime();
 		// Cargamos la pagina anterior al login
 		res.redirect(req.session.redir.toString());
 	})

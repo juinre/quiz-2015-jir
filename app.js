@@ -42,6 +42,30 @@ app.use(function(req, res, next) {
 });
 
 
+// Auto-logout de la sesion al pasar 2 min de inactividad.
+app.use(function(req, res, next) {
+    var diff
+
+    if (req.session.user) {
+        if (req.session.lastTime) {
+            diff = process.hrtime(req.session.lastTime);
+            req.session.lastTime = process.hrtime();
+            console.log('Tiempo inactividad sesión: ' + diff[0] + ' seg.');
+            
+            if (diff[0] > 120) {
+                delete req.session.user;
+                delete req.session.lastTime;
+                // Sesión caducada, el usuario debe autenticarse de nuevo
+                req.session.errors = [{"message": 'Su sesión ha caducado.'}];
+                res.redirect("/login");
+                return;  
+            }
+        }        
+    }
+    next();
+});
+
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
