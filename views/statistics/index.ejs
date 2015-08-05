@@ -1,0 +1,15 @@
+<table>
+	<th colspan="0">ESTADÍSTICAS</th>	
+<% 	
+	for (var i in statistics) { 
+%>		<tr>
+			<td class="stTexto">
+				<%= statistics[i].texto %>
+			</td>
+			<td class="stValor">
+				<%= statistics[i].valor %>
+			</td>
+
+		</tr>
+<% 	} %>
+</table>
